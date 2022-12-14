@@ -2,7 +2,7 @@
   "name": "mugstech-utils",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Functions to use in aws",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
