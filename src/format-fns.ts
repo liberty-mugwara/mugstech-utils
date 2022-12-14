@@ -1,8 +1,10 @@
-interface IFormatFnReturn {
+export interface IFormatFnReturn {
   data: string;
   extension: "JSON";
   jsonType: "OBJECT" | "ARRAY";
 }
+
+export type TFormatFnNames = "formatVariantIdsFromBulkQuery";
 
 export function formatVariantIdsFromBulkQuery(data: string): IFormatFnReturn {
   const variant: { id: string; sku: string; product: { id: string } } =
