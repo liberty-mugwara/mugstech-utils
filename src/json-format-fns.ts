@@ -1,12 +1,10 @@
-export interface IFormatFnReturn {
-  data: string;
-  extension: "JSON";
-  jsonType: "OBJECT" | "ARRAY";
-}
+import { IFormatJSONFnReturn } from "./types";
 
 export type TFormatFnNames = "formatVariantIdsFromBulkQuery";
 
-export function formatVariantIdsFromBulkQuery(data: string): IFormatFnReturn {
+export function formatVariantIdsFromBulkQuery(
+  data: string
+): IFormatJSONFnReturn {
   const variant: { id: string; sku: string; product: { id: string } } =
     JSON.parse(data);
   return {
