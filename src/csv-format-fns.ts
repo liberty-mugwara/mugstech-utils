@@ -51,6 +51,7 @@ export function formatCreatedProducts(data: string): IFormatCSVFnReturn {
   return {
     data: row,
     extension: "CSV",
-    headings: "productid(variant_sku),id,variant_id,variant_inventory_item_id",
+    headings:
+      "product_id_or_product_sku,id,variant_id,variant_inventory_item_id",
   };
 }
