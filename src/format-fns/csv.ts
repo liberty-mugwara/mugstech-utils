@@ -1,5 +1,5 @@
-import { getShopifyIdNumber } from "./format-ids";
-import { IFormatCSVFnReturn } from "./types";
+import { getShopifyIdNumber } from "./ids";
+import { IFormatCSVFnReturn } from "../types";
 
 export type TCSVFormatFnNames = "formatCreatedProducts";
 
