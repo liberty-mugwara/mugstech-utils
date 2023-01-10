@@ -1,4 +1,4 @@
-export * from "./json-format-fns";
-export * from "./csv-format-fns";
-export * from "./format-ids";
+export * from "./format-fns/json";
+export * from "./format-fns/csv";
+export * from "./format-fns/ids";
 export * from "./types";

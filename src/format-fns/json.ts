@@ -1,4 +1,4 @@
-import { IFormatJSONFnReturn } from "./types";
+import { IFormatJSONFnReturn } from "../types";
 
 export type TFormatFnNames = "formatVariantIdsFromBulkQuery";
 
