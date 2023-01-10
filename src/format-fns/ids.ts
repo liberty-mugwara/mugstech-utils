@@ -1,4 +1,4 @@
-import { IObjectIdParams } from "./types";
+import { IObjectIdParams } from "../types";
 
 export function getShopifyIdNumber({ id, object }: IObjectIdParams<string>) {
   return parseInt(id.replace(`gid://shopify/${object}/`, ""), 10);
