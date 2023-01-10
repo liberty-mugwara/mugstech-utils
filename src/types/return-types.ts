@@ -16,3 +16,5 @@ export interface ILambdaReturnType {
   filesCreated?: string[];
   objectsCount?: number;
 }
+
+export type TLambdaReturnType = Promise<ILambdaReturnType>;
