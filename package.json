@@ -17,6 +17,7 @@
   "author": "Liberty Mugwara",
   "license": "ISC",
   "dependencies": {
+    "rimraf": "^3.0.2",
     "tslib": "^2.4.1"
   },
   "devDependencies": {
