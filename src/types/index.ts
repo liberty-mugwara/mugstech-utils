@@ -1,3 +1,5 @@
+export * from "./return-types";
+
 export interface IFormatCSVFnReturn {
   data: string;
   extension: "CSV";
