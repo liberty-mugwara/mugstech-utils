@@ -18,6 +18,7 @@ export type TShopifyObject =
   | "Order"
   | "OrderTransaction"
   | "Product"
+  | "ProductImage"
   | "ProductVariant"
   | "Refund"
   | "ShippingLine";
