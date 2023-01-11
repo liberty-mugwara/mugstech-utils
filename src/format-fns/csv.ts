@@ -3,7 +3,10 @@ import { IFormatCSVFnReturn } from "../types";
 
 export type TCSVFormatFnNames = "formatCreatedProducts";
 
-export function formatCreatedProducts(data: string): IFormatCSVFnReturn {
+export function formatCreatedProducts(
+  data: string,
+  prevData?: string
+): IFormatCSVFnReturn {
   const createData: {
     data: {
       productCreate: {
