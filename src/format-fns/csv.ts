@@ -1,7 +1,7 @@
 import { getShopifyIdNumber } from "./ids";
 import { IFormatCSVFnReturn } from "../types";
 
-export type TCSVFormatFnNames = "formatCreatedProducts";
+export type TCSVFormatFnNames = "formatCreatedProducts" | "formatProductImages";
 
 export function formatCreatedProducts(
   data: string,
@@ -56,5 +56,50 @@ export function formatCreatedProducts(
     extension: "CSV",
     headings:
       "product_id_or_product_sku,id,variant_id,variant_inventory_item_id",
+  };
+}
+
+export interface IProductImage {
+  id: string;
+  altText?: string | null;
+  url?: string;
+  __parentId?: string;
+}
+export function formatProductImages(
+  data: string,
+  prevData: string
+): IFormatCSVFnReturn {
+  const currentImageData = JSON.parse(data) as IProductImage;
+  const prevImageData = JSON.parse(prevData) as IProductImage;
+
+  let row = "";
+
+  if (!currentImageData.__parentId && !prevImageData.__parentId) {
+    row = `\r\n${getShopifyIdNumber({
+      object: "Product",
+      id: prevImageData.id,
+    })},,,`;
+  }
+
+  if (currentImageData.__parentId) {
+    const productId = getShopifyIdNumber({
+      object: "Product",
+      id: prevImageData.id,
+    });
+
+    const imageId = getShopifyIdNumber({
+      object: "ProductImage",
+      id: currentImageData.id,
+    });
+
+    row = `${row}\r\n${productId},${imageId},${currentImageData.url || ""},${
+      currentImageData.altText || ""
+    }`;
+  }
+
+  return {
+    data: row,
+    extension: "CSV",
+    headings: "id,image_id,image_url,image_alt_text",
   };
 }
