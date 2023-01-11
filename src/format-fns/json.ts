@@ -3,7 +3,8 @@ import { IFormatJSONFnReturn } from "../types";
 export type TFormatFnNames = "formatVariantIdsFromBulkQuery";
 
 export function formatVariantIdsFromBulkQuery(
-  data: string
+  data: string,
+  prevData?: string
 ): IFormatJSONFnReturn {
   const variant: { id: string; sku: string; product: { id: string } } =
     JSON.parse(data);
