@@ -96,9 +96,9 @@ export function formatProductImages(
       id: currentImageData.id,
     });
 
-    row = `${row}\r\n${productId},${imageId},${currentImageData.url || ""},${
+    row = `${row}\r\n${productId},${imageId},${currentImageData.url || ""},"${
       currentImageData.altText || ""
-    }`;
+    }"`;
   }
 
   return {
