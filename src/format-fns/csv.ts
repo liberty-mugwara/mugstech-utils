@@ -74,7 +74,11 @@ export function formatProductImages(
 
   let row = "";
 
-  if (!currentImageData.__parentId && !prevImageData.__parentId) {
+  if (
+    prevData !== "{}" &&
+    !currentImageData.__parentId &&
+    !prevImageData.__parentId
+  ) {
     row = `\r\n${getShopifyIdNumber({
       object: "Product",
       id: prevImageData.id,
