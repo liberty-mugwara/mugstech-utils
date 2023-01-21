@@ -4,7 +4,8 @@ import { IFormatCSVFnReturn } from "../types";
 export type TCSVFormatFnNames =
   | "formatCreatedProducts"
   | "formatProductImages"
-  | "formatAllProductVariantIds";
+  | "formatAllProductVariantIds"
+  | "formatProductVariantData";
 
 export function formatCreatedProducts(
   data: string,
@@ -152,5 +153,62 @@ export function formatAllProductVariantIds(
     extension: "CSV",
     headings:
       "product_id_or_product_sku,id,variant_id,variant_inventory_item_id,Option1_Name,Option1_Value",
+  };
+}
+
+export function formatProductVariantData(
+  data: string,
+  prevData?: string
+): IFormatCSVFnReturn {
+  const variant: {
+    id: string;
+    title: string;
+    inventoryItem: {
+      id: string;
+    };
+    selectedOptions: {
+      name: string;
+      value: string;
+    }[];
+    sku: string;
+    product: { id: string; vendor: string; title: string };
+  } = JSON.parse(data);
+
+  let row = "";
+  const variantId = getShopifyIdNumber({
+    object: "ProductVariant",
+    id: variant.id,
+  });
+  const productId = getShopifyIdNumber({
+    object: "Product",
+    id: variant.product.id,
+  });
+  const inventoryItemId = getShopifyIdNumber({
+    object: "InventoryItem",
+    id: variant.inventoryItem.id,
+  });
+  const option = variant.selectedOptions.find(
+    (v) => v.name === "Längenintervall" || v.name === "Title"
+  ) || { name: "Title", value: "Default Title" };
+
+  const items = [
+    variant.sku,
+    productId,
+    variantId,
+    inventoryItemId,
+    variant.title,
+    option.name,
+    option.value,
+    variant.product.title,
+    variant.product.vendor,
+  ];
+
+  row = `\r\n${items.join(",")}`;
+
+  return {
+    data: row,
+    extension: "CSV",
+    headings:
+      "product_id_or_product_sku,id,variant_id,variant_inventory_item_id,variant_title,Option1_Name,Option1_Value,product_title,vendor",
   };
 }
